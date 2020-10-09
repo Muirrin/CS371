@@ -1,0 +1,29 @@
+9523       0.000000 execve("./HelloWorld", ["./HelloWorld"], 0x7ffdc1500b28 /* 46 vars */) = 0
+9523       0.000372 brk(NULL)           = 0x55d803774000
+9523       0.000065 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+9523       0.000054 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+9523       0.000040 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+9523       0.000041 fstat(3, {st_mode=S_IFREG|0644, st_size=59495, ...}) = 0
+9523       0.000035 mmap(NULL, 59495, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f607c57d000
+9523       0.000037 close(3)            = 0
+9523       0.000031 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory)
+9523       0.000036 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+9523       0.000037 read(3, "\x7f\x45\x4c\x46\x02\x01\x01\x03\x00\x00\x00\x00\x00\x00\x00\x00\x03\x00\x3e\x00\x01\x00\x00\x00\xb0\x1c\x02\x00\x00\x00\x00\x00"..., 832) = 832
+9523       0.000033 fstat(3, {st_mode=S_IFREG|0755, st_size=2030544, ...}) = 0
+9523       0.000030 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f607c57b000
+9523       0.000037 mmap(NULL, 4131552, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f607bf74000
+9523       0.000032 mprotect(0x7f607c15b000, 2097152, PROT_NONE) = 0
+9523       0.000035 mmap(0x7f607c35b000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1e7000) = 0x7f607c35b000
+9523       0.000042 mmap(0x7f607c361000, 15072, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f607c361000
+9523       0.000045 close(3)            = 0
+9523       0.000046 arch_prctl(ARCH_SET_FS, 0x7f607c57c4c0) = 0
+9523       0.001629 mprotect(0x7f607c35b000, 16384, PROT_READ) = 0
+9523       0.000072 mprotect(0x55d802617000, 4096, PROT_READ) = 0
+9523       0.000041 mprotect(0x7f607c58c000, 4096, PROT_READ) = 0
+9523       0.000035 munmap(0x7f607c57d000, 59495) = 0
+9523       0.000118 fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+9523       0.000095 brk(NULL)           = 0x55d803774000
+9523       0.000029 brk(0x55d803795000) = 0x55d803795000
+9523       0.000038 write(1, "Hello Wolrd\n", 12) = 12
+9523       0.000478 exit_group(0)       = ?
+9523       0.002255 +++ exited with 0 +++
