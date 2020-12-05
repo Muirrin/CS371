@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 import Utils.*;
 public class PartitionTable {
-	//TODO: your codde here
+	//TODO: your code here
 	//Notes:
 	// (1) each partition works like an bounded buffer between
 	// mappers and a reducer. (you can assume size = 10 or 50)

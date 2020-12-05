@@ -5,9 +5,13 @@ import java.util.logging.Level;
 public class MyMapReduce extends MapReduce {
 	////TODO: your code here.
 	//	What is in a running instance of MapReduce?
+	static PartitionTable table;
+	static int numPartitions;
+
 	public void MREmit(Object key, Object value)
 	{
 		//TODO: your code here.
+		//call partitionTable
 		throw new UnsupportedOperationException();
 	}
 
@@ -18,7 +22,7 @@ public class MyMapReduce extends MapReduce {
 	@Override
 	protected void MRRunHelper(String inputFileName,
 		    		  MapperReducerClientAPI mapperReducerObj,
-		    		  int num_mappers, 
+		    		  int num_mappers,
 		    		  int num_reducers)
 	{
 		//TODO: your code here.
