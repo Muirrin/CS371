@@ -26,6 +26,22 @@ public class MyMapReduce extends MapReduce {
 		    		  int num_reducers)
 	{
 		//TODO: your code here.
+		Reducer(mapperReducerObj, num_partitions);
 		throw new UnsupportedOperationException();
 	}
+
+	//This is the producer
+	public void Mapper(Object inputSource) {
+	//public class ConcurrentHashMap<K,​V> extends AbstractMap<K,​V> implements ConcurrentMap<K,​V>, Serializable
+	//ConcurrentHashMap<K, V> chm = new ConcurrentHashMap<>();
+	//int counter = num of mapper threads; decrement every time thread completes
+		Map(inputSource);
+	}
+
+	//This is the consumer
+	public void Reducer(Object key, int partition_number) {
+			reduce(key, partition_number);
+
+	}
+
 }
