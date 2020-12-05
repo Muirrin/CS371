@@ -14,14 +14,14 @@ public class WordCount extends MapperReducerAPI{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} 
+		}
 	}
 
 	public void Reduce(Object key, int partition_number) {
 	    int count = 0;
 	    while ((MapReduce.MRGetNext(key, partition_number)) != null)
 	        count++;
-	    MapReduce.MRPostProcess((String)key, String.valueOf(count));
+	    MapReduce.MRPostProcess((String)key, String.valueOf(count)); //just returns Key:value
 	}
 
     public static void main(String[] argv) {
@@ -36,6 +36,6 @@ public class WordCount extends MapperReducerAPI{
     	}
     	s.close();
 		MapReduce.MRRun(inputFileName, new WordCount(), 20, 20);
-	}	
-	
+	}
+
 }
