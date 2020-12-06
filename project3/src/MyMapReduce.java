@@ -17,6 +17,8 @@ public class MyMapReduce extends MapReduce {
 
 	public Object MRGetNext(Object key, int partition_number) {
 		//TODO: your code here.
+		//return value
+		return null;
 		throw new UnsupportedOperationException();
 	}
 	@Override
