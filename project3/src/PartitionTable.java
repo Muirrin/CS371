@@ -27,7 +27,7 @@ public class PartitionTable {
      }
   }
 	
-  public void addToPartition(Object key, Object value, long partitionNumber) throws InterruptedException {
+  public void addToPartition(Object key, Object value, int partitionNumber) throws InterruptedException {
      mutex_lock.lock();     
      //long partitionNumber = Partitioner(item.key,INITIAL_SIZE);
      //General Idea: boundBuffer[partitionNumber].deposit(item);
@@ -35,7 +35,7 @@ public class PartitionTable {
   }
 
   //Fetch method
-  public KV fetchFromPartition(Object key, long partitionNumber) throws InterruptedException {
+  public KV fetchFromPartition(Object key, int partitionNumber) throws InterruptedException {
 	 mutex_lock.lock();
 	 KV item;
      //long partitionNumber = Partitioner(item.key,INITIAL_SIZE);
