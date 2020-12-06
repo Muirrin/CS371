@@ -26,22 +26,18 @@ public class PartitionTable {
             boundBuffer[i] = new BoundBuffer<KV>(INITIAL_SIZE);
      }
   }
-
 	
-  public void addToPartition(KV item) throws InterruptedException {
+  public void addToPartition(Object key, Object value, long partitionNumber) throws InterruptedException {
      mutex_lock.lock();     
      //long partitionNumber = Partitioner(item.key,INITIAL_SIZE);
      //General Idea: boundBuffer[partitionNumber].deposit(item);
       mutex_lock.unlock();
   }
- 
-  public void addToPartition(int index, Object Key, Object Value){
-  
-  }
 
   //Fetch method
-  public KV fetchFromPartition(KV item) throws InterruptedException {
-     mutex_lock.lock();
+  public KV fetchFromPartition(Object key, long partitionNumber) throws InterruptedException {
+	 mutex_lock.lock();
+	 KV item;
      //long partitionNumber = Partitioner(item.key,INITIAL_SIZE);
      //item = boundBuffer[partitionNumber].fetch();
      mutex_lock.unlock();
