@@ -1,7 +1,9 @@
-import Utils.BoundBuffer;
 import java.util.HashMap;
-
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import Utils.*;
+
 public class PartitionTable {
 	//TODO: your code here
 	//Notes:
@@ -12,45 +14,36 @@ public class PartitionTable {
 	// from partition_i, then reducer_i should have maintained {"foo", {1,1,1}} and {"bar", {1,1}}. You can use a
 	// hashmap or a tree to implement this KV store, but where
 	// should this KV stored be? inside the reducer? inside this partitionTable?
-
+  
   private Lock mutex_lock = new ReentrantLock(true);
-  private final Condition isEmpty;
-  private final Condition isFull;
-
+  private static int INITIAL_SIZE = 10;
+  BoundBuffer<KV> []boundBuffer = new BoundBuffer[INITIAL_SIZE];//Declaring an array of Bound Buffers
 
 
   public PartitionTable(){
-
-     isEmpty = mutex_lock.newCondition();
-     isFull = mutex_lock.newCondition();
-
+     //public KV(Object key, Object value);
+     for (int i = 0; i < INITIAL_SIZE; i++) { //Initializing the array of bound buffers
+            boundBuffer[i] = new BoundBuffer<KV>(INITIAL_SIZE);
+     }
   }
 
-  public void addToPartition(T item) throws InterruptedException {
-     mutex_lock.lock();
-     while(currentSize == size){ //if full
-        isFull.await();
-     }
-      circularQueueItems[rear] = item;
-      rear = (rear + 1) % circularQueueItems.length;
-      currentSize++; // increase number of elements in Circular queue
-      isEmpty.signal();
+	
+  public void addToPartition(KV item) throws InterruptedException {
+     mutex_lock.lock();     
+     //long partitionNumber = Partitioner(item.key,INITIAL_SIZE);
+     //General Idea: boundBuffer[partitionNumber].deposit(item);
       mutex_lock.unlock();
   }
-
+ 
+  public void addToPartition(int index, Object Key, Object Value){
+  
+  }
 
   //Fetch method
-  public T fetchToPartition() throws InterruptedException {
+  public KV fetchFromPartition(KV item) throws InterruptedException {
      mutex_lock.lock();
-     while(size == 0){ //if full
-         isEmpty.await();
-     }
-     T item;
-     item = circularQueueItems[front];
-     circularQueueItems[front] = null;
-     front = (front + 1) % circularQueueItems.length;
-     currentSize--;
-     isFull.signal();
+     //long partitionNumber = Partitioner(item.key,INITIAL_SIZE);
+     //item = boundBuffer[partitionNumber].fetch();
      mutex_lock.unlock();
      return item;
   }
