@@ -1,0 +1,54 @@
+"For Q&A tasks, fill your answers in the cell, or at least fill “A”, “P” or “N” in all the ”Your self-evaluation” cells. 
+A-all finished   P-Partially finished  N-None finished
+If you mark the task “N”, it receives 25% of max possible points for the task (It does not apply to extra-point tasks).
+If you leave it blank, it receives 0 points. 
+If your mark the task ""A"" or ""P"" but zero work is done for the task, then it receives 0 points.
+Please leave ""score"" cells blank for course staff
+If your code does not build,  your code will not receive more than 50% of max possible points",,,,,
+,,,,,
+,,,,,
+Design (30%),Max score (%),Your answer/Your self-evalution,1st pass: autograder ,2nd pass: manual review,final score
+UML diagram ,15,A,NA,,
+Flow chart of a mapper's life cycle,7.5,A,NA,,
+Flow chart of a reducer's life cycle,7.5,A,NA,,
+,,,,Total,Total
+,,,,,
+Code style and readability (5%),Max score (%),Your answer/Your self-evalution,1st pass: autograder,2nd pass: manual review,final score
+"All functions with proper comments explaining pre-condition 
+post-conditions",5,A,NA,,
+Tabs or spaces for indentation (and how many spaces) are consistent,,A,,,
+Appropriate use of white space,,A,,,
+Proper naming of variables and functions,,A,,,
+,,,,Total,
+,,,,,
+Implementation (60%),Max score (%),Your answer/Your self-evalution,1st pass: autograder,2nd pass: manual review,final score
+"1. Generic Unbound Buffer
+         Is fetch correctly impelmented?
+         Is depose correctly implmeneted?
+         Does it support generic types?",10,P,,,
+"2. Partition:
+        Does it use UnboundBuffer correctly?
+        Does it provide the right methods to mappers and reducers?",5,P,,,
+"3. MyMapReduce: MRRunHelper
+     Does it launch the mappers and reducers correctly?
+     Does it insert the EOS to buffers correctly (at right time)?
+     Does it wait for reducers to complete?",5,P,,,
+"4. MyMapReduce: mapper
+      Does each of your mapper work on one split of data?
+      Does your mapper drop data into the right partition correctly (with the right hash)?
+      Does your mapper run Map() for client code correctly?",7.5,P,,,
+"5. MyMapReduce: reducer
+      Does each of your reducer work on one and only one partition?
+      Does your reducer consume data from the right partition correctly?
+      Does your reducer maintain the KV store correctly?
+      Does your reducer run Reduce() for client code correctly?",7.5,P,,,
+Does your implementation match with your design?,10,P,,,
+Does it pass all unit tests?,15,N,,,
+,,,,Total,
+Project Structure and Formatting (5%),Max score (%),Your answer/Your self-evalution,1st pass: autograder,2nd pass: manual review,final score
+Your github repo should be named “CS371”;,5,A,,,0
+"Your github repo CS371 must be private, and you must add the instructor(jyuan2pace) as a collaborator;  ",,,,,
+All source code should be immediately under a folder called src immediately under project3;and all design documents are under folder design immediately under project3,,,,,
+This completed grading sheet i csv format or grading_sheet.txt which includes the link to your completed grading sheet should should be under the folder project3,,,,,
+,,,,Total,
+Final total score,,,,Total,
