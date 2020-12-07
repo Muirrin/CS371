@@ -42,7 +42,7 @@ public class MyMapReduce extends MapReduce {
 	{
 		//TODO: your code here.
     int i = 0;
-            int i = 0;
+  
    while(i<num_mappers){
             Thread producer = new Thread(new Mapper()); //mapper threads
             producer.start();
@@ -57,39 +57,26 @@ public class MyMapReduce extends MapReduce {
     }
 		throw new UnsupportedOperationException();
 	}
-	//This is the producer
-	public void Mapper(Object inputSource) {
-	//public class ConcurrentHashMap<K,​V> extends AbstractMap<K,​V> implements ConcurrentMap<K,​V>, Serializable
-	//ConcurrentHashMap<K, V> chm = new ConcurrentHashMap<>();
-	//int counter = num of mapper threads; decrement every time thread completes
-			Map(inputSource);
-
-	}
-
-	//This is the consumer
-	public void Reducer(Object key, int partition_number){
-  	ConcurrentHashMap<Object, Object> hashMap = new ConcurrentHashMap<>();
-	KV item;
-    while(key!=EOS){ //before end of string
-    	item = table.fetchFromPartition(key, partition_number);
-      hashMap.put(item.key,item.val);
-    }
-			Reduce(key, partition_number);
-      System.out.println("This is KVS:");
-	}
 
   	//Classes for Mapper() and Reducer()
     private static class Mapper implements Runnable{
         @Override
         public void run() {
-
+							Map(inputSource);
 				}
     }
 
     private static class Reducer implements Runnable{
         @Override
         public void run() {
-            
+					ConcurrentHashMap<Object, Object> hashMap = new ConcurrentHashMap<>();
+					KV item;
+					while(key!=EOS){ //before end of string
+						item = table.fetchFromPartition(key, partition_number);
+						hashMap.put(item.key,item.val);
+					}
+						Reduce(key, partition_number);
+						System.out.println("This is KVS:");
         }
     }
 
