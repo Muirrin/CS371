@@ -19,7 +19,6 @@ public class PartitionTable {
   private static int INITIAL_SIZE = 10;
   BoundBuffer<KV> []boundBuffer = new BoundBuffer[INITIAL_SIZE];//Declaring an array of Bound Buffers
 
-
   public PartitionTable(){
      //public KV(Object key, Object value);
      for (int i = 0; i < INITIAL_SIZE; i++) { //Initializing the array of bound buffers
@@ -27,10 +26,10 @@ public class PartitionTable {
      }
   }
 	
-  public void addToPartition(Object key, Object value, int partitionNumber) throws InterruptedException {
+  public void addToPartition(KV item, long partitionNumber) throws InterruptedException {
      mutex_lock.lock();     
      //long partitionNumber = Partitioner(item.key,INITIAL_SIZE);
-     //General Idea: boundBuffer[partitionNumber].deposit(item);
+	 boundBuffer[(int) partitionNumber].deposit(item);
       mutex_lock.unlock();
   }
 
@@ -38,8 +37,7 @@ public class PartitionTable {
   public KV fetchFromPartition(Object key, int partitionNumber) throws InterruptedException {
 	 mutex_lock.lock();
 	 KV item;
-     //long partitionNumber = Partitioner(item.key,INITIAL_SIZE);
-     //item = boundBuffer[partitionNumber].fetch();
+     item = boundBuffer[partitionNumber].fetch();
      mutex_lock.unlock();
      return item;
   }
