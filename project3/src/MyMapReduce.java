@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MyMapReduce extends MapReduce implements Runnable {
+public class MyMapReduce extends MapReduce {
 	//// TODO: your code here.
 	// What is in a running instance of MapReduce?
 	static PartitionTable table;
@@ -32,7 +32,7 @@ public class MyMapReduce extends MapReduce implements Runnable {
 		item = table.fetchFromPartition(key, partition_number);
 		mutex_lock.unlock();
 		return item;
-		//throw new UnsupportedOperationException(); ??? 
+		//throw new UnsupportedOperationException(); ???
   }
 	@Override
 	protected void MRRunHelper(String inputFileName,
@@ -42,28 +42,30 @@ public class MyMapReduce extends MapReduce implements Runnable {
 	{
 		//TODO: your code here.
     int i = 0;
-    while(i<num_mappers){
-      Thread producer = new Thread(); //mapper threads
-      producer.start();
-      i++;
-    }
-    i=0;
-    while(i<num_reducers){
-    	Thread consumer = new Thread();
-      consumer.start();
-      i++;
+            int i = 0;
+   while(i<num_mappers){
+            Thread producer = new Thread(new Mapper()); //mapper threads
+            producer.start();
+            producer.join();
+            i++;
+   }
+   while(i<num_reducers){
+            Thread consumer = new Thread(new Reducer()); //mapper threads
+            consumer.start();
+            consumer.join();
+            i++;
     }
 		throw new UnsupportedOperationException();
-	} 
+	}
 	//This is the producer
 	public void Mapper(Object inputSource) {
 	//public class ConcurrentHashMap<K,​V> extends AbstractMap<K,​V> implements ConcurrentMap<K,​V>, Serializable
 	//ConcurrentHashMap<K, V> chm = new ConcurrentHashMap<>();
 	//int counter = num of mapper threads; decrement every time thread completes
 			Map(inputSource);
-      
+
 	}
-  
+
 	//This is the consumer
 	public void Reducer(Object key, int partition_number){
   	ConcurrentHashMap<Object, Object> hashMap = new ConcurrentHashMap<>();
@@ -75,6 +77,25 @@ public class MyMapReduce extends MapReduce implements Runnable {
 			Reduce(key, partition_number);
       System.out.println("This is KVS:");
 	}
+
+  	//Classes for Mapper() and Reducer()
+    private static class Mapper implements Runnable{
+        @Override
+        public void run() {
+            //Thread t = Thread.currentThread();
+            //System.out.println("Thread started: "+t.getName());
+            System.out.println("This is a mapper class thread");
+        }
+    }
+
+    private static class Reducer implements Runnable{
+        @Override
+        public void run() {
+            //Thread t = Thread.currentThread();
+            //System.out.println("Thread started: "+t.getName());
+            System.out.println("This is a reducer class thread");
+        }
+    }
 
 
 }
