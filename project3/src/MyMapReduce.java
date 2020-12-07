@@ -82,18 +82,14 @@ public class MyMapReduce extends MapReduce {
     private static class Mapper implements Runnable{
         @Override
         public void run() {
-            //Thread t = Thread.currentThread();
-            //System.out.println("Thread started: "+t.getName());
-            System.out.println("This is a mapper class thread");
-        }
+
+				}
     }
 
     private static class Reducer implements Runnable{
         @Override
         public void run() {
-            //Thread t = Thread.currentThread();
-            //System.out.println("Thread started: "+t.getName());
-            System.out.println("This is a reducer class thread");
+            
         }
     }
 
